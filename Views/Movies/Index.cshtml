@@ -1,0 +1,39 @@
+﻿@model IList<MovieInfo>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>Movies</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<table class="table animated fadeIn">
+    <thead>
+        <tr>
+            <th>🍿</th>
+            <th>Title</th>
+            <th>ReleaseDate</th>
+            <th>Genre</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>🎬</td>
+                <td>@Html.DisplayFor(_ => item.Title)</td>
+                <!-- <td>@Html.DisplayFor(_ => item.ReleaseDate)</td> -->
+                <td>@item.ReleaseDate.ToString("dd MMM yyyy")</td>
+                <td>@Html.DisplayFor(_ => item.Genre)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">✏️</a>
+                    |
+                    <a asp-action="Delete" asp-route-id="@item.Id">❌</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
